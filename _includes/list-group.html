@@ -1,0 +1,8 @@
+<ul>
+	{% for group in include.group %}
+		<li>
+			<i class="ph ph-{{ include.icon | default: 'book' }}"></i>
+			<a href="{{ include.dir | prepend: '/' | append: '/' | relative_url }}{{ group[0] | slugify: 'ascii' }}">{{ group[0] }}</a>&nbsp;<span>{{ group[1].size }} post{% if group[1].size > 1 %}s{% endif %}</span></p>
+		</li>
+	{% endfor %}
+</ul>

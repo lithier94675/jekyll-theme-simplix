@@ -1,0 +1,21 @@
+---
+layout: default
+title_bg_light: 'linear-gradient(118deg, #1b86f7 0%, #3be8ff 62%, white 100%)'
+title_bg_dark: 'linear-gradient(125deg, #0f0212 0%, #4b0f69 74%, #600c8a 100%)'
+---
+
+<header class="home__header" role="banner">
+	<div class="text">
+		<h1>{{ page.title | default: site.title | strip_html | default: 'Put an awesome title here' }}</h1>
+		<h2>{{ page.description | default: site.description | strip_html | default: 'Description goes here' }}</h2>
+	</div>
+	<div class="btn__scroll-down">
+		<button onclick="window.scrollTo(0, document.querySelector('.home__content').getBoundingClientRect().top - 48)"><i class="ph ph-caret-down"></i> Skip to content</button>
+	</div>
+</header>
+
+<div class="home__content" role="main">
+	{{ content }}
+</div>
+
+{% include footer.html %}

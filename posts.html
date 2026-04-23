@@ -1,0 +1,23 @@
+---
+layout: page
+title: Posts listing
+permalink: /posts
+---
+
+{% if site.posts.size > 0 %}
+	<h3>Individual posts</h3>
+	<p>Some posts listed here may not belong to a specific tag or category.</p>
+	{% include list-post.html posts=site.posts %}
+{% else %}
+	<p>There aren't any posts on this website.</p>
+{% endif %}
+
+{% if site.tags.size > 0 and site['jekyll-archives'].enabled == 'all' or site['jekyll-archives'].enabled contains 'tags' %}
+	<h3>Tags</h3>
+	{% include list-group.html dir='tag' group=site.tags icon='tag-simple' %}
+{% endif %}
+
+{% if site.categories.size > 0 and site['jekyll-archives'].enabled == 'all' or site['jekyll-archives'].enabled contains 'categories' %}
+	<h3>Categories</h3>
+	{% include list-group.html dir='category' group=site.categories icon='folder-simple' %}
+{% endif %}

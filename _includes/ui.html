@@ -1,0 +1,22 @@
+{% assign nav = site.navigation | default: site.data.navigation %}
+<nav{% if nav %} class="nav__multi"{% endif %}>
+	<div class="nav__toggle">
+		<button title="Toggle navigation menu" aria-label="Toggle navigation menu"><i class="ph ph-list"></i> Menu</button>
+	</div>
+	<div class="nav__links">
+		{% for link in nav %}
+			<a href="{{ link.url | relative_url }}"{% if link.icon %}><i class="ph ph-{{ link.icon }}"></i>{% else %} class="nav__links__no-icon">{% endif %}&nbsp;{{ link.title | strip_html | truncate: 32 }}</a>
+		{% else %}
+			<a href="{{ '/' | relative_url }}"><i class="ph ph-house"></i> Home</a>
+		{% endfor %}
+	</div>
+</nav>
+
+<button class="btn__theme-toggle" title="Switch between dark/ light theme">
+	<span class="btn__theme-toggle-light"><i class="ph ph-sun"></i><span>Light</span></span>
+	<span class="btn__theme-toggle-dark"><span>Dark</span><i class="ph ph-moon"></i></span>
+</button>
+
+<div class="btn__scroll-up">
+	<button onclick="window.scrollTo(0, 0)"><i class="ph ph-arrow-up"></i> Scroll to top</button>
+</div>

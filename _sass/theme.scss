@@ -1,0 +1,197 @@
+$fade: .7;
+$quote-alert: note tip important warning caution;
+$quote-color-light: #44acff #ffce2e #b153d7 #ff8b5a #ff4400;
+$quote-color-dark: #7ab9f0 #fff370 #de76eb #ffa95a #fa7070;
+$quote-icon: "\e2ce" "\e2dc" "\e15c" "\e4e0" "\e9b8";
+
+@mixin quote($name, $color, $icon) {
+	&.quote__alert-#{$name} {
+		border-color: #{$color} !important;
+
+		> p.quote__alert-title {
+			color: #{$color};
+			font-weight: bold;
+
+			&::before {
+				content: str-insert($icon, " ", 2);
+			}
+		}
+	}
+}
+
+@mixin theme-light {
+	$bg: white;
+
+	background: $bg;
+
+	&.main__bg-fill .home__content, &.main__bg-fill .post__content {
+		background: rgba($bg, $fade);
+	}
+
+	.page__header {
+		border-bottom: 1px solid #ddd;
+	}
+
+	[role="main"] {
+		h1, h2 {
+			border-bottom: 1px solid #ddd;
+		}
+
+		blockquote {
+			border: 1px solid #ddd;
+			@for $i from 1 through length($quote-alert) {
+				@include quote(nth($quote-alert, $i), nth($quote-color-light, $i), nth($quote-icon, $i));
+			}
+		}
+
+		hr {
+			background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzIiPjxwYXRoIGQ9Ik0wIDE1aDM2OHYySDBabTQzMiAwaDM2OHYySDQzMloiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSI4IiByPSI0Ii8+PGNpcmNsZSBjeD0iMzkyIiBjeT0iMjQiIHI9IjQiLz48Y2lyY2xlIGN4PSI0MDgiIGN5PSIyNCIgcj0iNCIvPjwvc3ZnPg==") no-repeat center;
+		}
+
+		table:not(.rouge-table) {
+			th {
+				border-bottom: 2px solid #aaa !important;
+			}
+
+			th, td {
+				border: 1px solid #888;
+			}
+
+			th, tr:nth-child(even of :has(td)) td {
+				background: #e9ecef5d;
+			}
+		}
+
+		pre {
+			background: #f1f3f58d;
+			border: 1px solid #ddd;
+		}
+	}
+
+	.post__header > p a, [role="main"] a, footer a {
+		color: #444;
+		text-decoration: underline 1px solid #444;
+
+		&:visited {
+			color: #b136e2;
+			text-decoration: #b136e2;
+		}
+
+		&.footnote, &.reversefootnote {
+			color: #1975d2;
+		}
+	}
+
+	&:not(.main__bg_fill) footer {
+		border-top: 1px solid #ddd;
+	}
+
+	&.main__bg-fill footer {
+		border-top: none;
+	}
+
+	.btn__theme-toggle {
+		border: 2px solid #6bc4ff;
+
+		span.btn__theme-toggle-light {
+			background: #1e91d6;
+		}
+	}
+
+	.btn__scroll-up button {
+		border: 1px solid #a6c8ff;
+	}
+}
+
+@mixin theme-dark {
+	$bg: #242124;
+
+	background: $bg;
+	color: #f0ffff;
+
+	&.main__bg-fill .home__content, &.main__bg-fill .post__content {
+		background: rgba($bg, $fade);
+	}
+
+	.page__header {
+		border-bottom: 1px solid #444;
+	}
+
+	[role="main"] {
+		h1, h2 {
+			border-bottom: 1px solid #444;
+		}
+
+		blockquote {
+			border: 1px solid #444;
+			@for $i from 1 through length($quote-alert) {
+				@include quote(nth($quote-alert, $i), nth($quote-color-dark, $i), nth($quote-icon, $i));
+			}
+		}
+
+		hr {
+			background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzIiPjxwYXRoIGQ9Ik0wIDE1aDM2OHYySDBabTQzMiAwaDM2OHYySDQzMloiIGZpbGw9IiNhYWEiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSI4IiByPSI0IiBmaWxsPSIjYWFhIi8+PGNpcmNsZSBjeD0iMzkyIiBjeT0iMjQiIHI9IjQiIGZpbGw9IiNhYWEiLz48Y2lyY2xlIGN4PSI0MDgiIGN5PSIyNCIgcj0iNCIgZmlsbD0iI2FhYSIvPjwvc3ZnPg==") no-repeat center;
+		}
+
+		table:not(.rouge-table) {
+			th {
+				border-bottom: 2px solid #ddd !important;
+			}
+
+			th, td {
+				border: 1px solid #aaa;
+			}
+
+			th, tr:nth-child(even of :has(td)) td {
+				background: #43434f9c;
+			}
+		}
+
+		pre {
+			background: #3e3d537b;
+			border: 1px solid #444;
+
+			.code__top * {
+				color: #f0ffff;
+			}
+		}
+	}
+
+	.post__header > p a, [role="main"] a, footer a {
+		color: #bac8ff;
+		text-decoration: underline 1px solid;
+
+		&:visited {
+			color: #df9fe6;
+		}
+
+		&.footnote, &.reversefootnote {
+			color: #ffaa6e;
+		}
+	}
+
+	&:not(.main__bg-fill) footer {
+		border-top: 1px solid #444;
+		color: white;
+	}
+
+	&.main__bg-fill footer {
+		border-top: none;
+	}
+
+	.btn__theme-toggle {
+		border: 2px solid #898886;
+
+		span.btn__theme-toggle-dark {
+			background: #6d6f6f;
+
+			i, span {
+				color: white;
+			}
+		}
+	}
+
+	.btn__scroll-up button {
+		border: 1px solid #f0f9fb;
+	}
+}

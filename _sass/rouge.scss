@@ -1,0 +1,168 @@
+.c, .c1, .cm, .cp, .cpf, .cs, .ge, .ges, .sd {
+	font-style: italic;
+}
+
+.ges, .gh, .gs, .gu, .k, .kc, .kd, .kn, .kp, .kr, .kt, .nb {
+	font-weight: bold;
+}
+
+.gh {
+	text-decoration: underline;
+}
+
+.hll {
+	background: #faf7b3;
+}
+
+.language-diff {
+	.err, .gr {
+		background: none !important;
+		color: inherit;
+	}
+}
+
+.language-md, .language-markdown {
+	.sx {
+		text-decoration: 1px underline;
+	}
+}
+
+@mixin rouge-light {
+	pre code {
+		color: #2b2c28;
+
+		pre.lineno {
+			color: #81868f;
+		}
+
+		.err, .gr {
+			background: #ef3722;
+			color: #fff;
+		}
+
+		.c, .c1, .cm, .cs, .sd, .sh {
+			color: #b7a1e7;
+		}
+
+		.cp, .cpf {
+			color: #c99d91;
+		}
+
+		.gd, .gr, .ne {
+			color: #ef3722;
+		}
+
+		.gi {
+			color: #188a5b;
+		}
+
+		.gp {
+			color: #b7a1e7;
+		}
+
+		.il, .ld, .m, .mf, .mh, .mi, .mo {
+			color: #6dacf8;
+		}
+
+		.k, .kd, .kn, .kr, .nb, .o, .ow, .p, .pi, .se, .sr, .ss {
+			color: #8f61b7;
+		}
+
+		.kc, .kp, .kt {
+			color: #6cb6aa;
+		}
+
+		.l, .s, .s1, .s2, .sb, .sc, .sx {
+			color: #188a5b;
+		}
+
+		.na, .nl, .py {
+			color: #476f95;
+		}
+
+		.nc, .nn, .no, .nv, .si, .vc, .vg, .vi, .vm {
+			color: #b32987;
+		}
+
+		.nf, .ni {
+			color: #ff8531;
+		}
+
+		.nd {
+			color: #877982;
+		}
+
+		.nt {
+			color: #632fb4;
+		}
+	}
+}
+
+@mixin rouge-dark {
+	pre code {
+		pre.lineno {
+			color: #636d75;
+		}
+
+		.err, .gr {
+			background: #ef3722;
+			color: #fff;
+		}
+
+		.c, .c1, .cm, .cs, .sd, .sh {
+			color: #757480;
+		}
+
+		.cp, .cpf {
+			color: #fbdcca;
+		}
+
+		.gd, .gr, .ne {
+			color: #e58173;
+		}
+
+		.gi {
+			color: #43d78e;
+		}
+
+		.gp {
+			color: #b7a1e7;
+		}
+
+		.il, .ld, .m, .mf, .mh, .mi, .mo {
+			color: #87c3ed;
+		}
+
+		.k, .kd, .kn, .kr, .nb, .o, .ow, .p, .pi, .se, .sr, .ss {
+			color: #b5a5e0;
+		}
+
+		.kc, .kp, .kt {
+			color: #4ca0b5;
+		}
+
+		.l, .s, .s1, .s2, .sb, .sc, .sx {
+			color: #a3d6c8;
+		}
+
+		.na, .nl, .py {
+			color: #4ec189;
+		}
+
+		.nc, .nn, .no, .nv, .si, .vc, .vg, .vi, .vm {
+			color: #e0bfff;
+		}
+
+		.nf, .ni {
+			color: #fab4a7;
+		}
+
+		.nd {
+			color: #976d5e;
+		}
+
+		.nt {
+			color: #8b75ec;
+		}
+	}
+}

@@ -1,0 +1,116 @@
+.abcjs-css-warning {
+	display: none;
+}
+
+$thumb-width: 16px;
+$thumb-height: 16px;
+$track-height: 28px;
+$track-bg-height: 4px;
+$track-bg-start: max(0%, min(50% * (1 - $track-bg-height / $track-height), 50%));
+$track-bg-end: max(50%, min(50% * (1 + $track-bg-height / $track-height), 100%));
+
+.synth {
+	margin: 8px 16px 0;
+
+	.abcjs-inline-audio {
+		display: flex;
+		align-items: center;
+		column-gap: 4px;
+
+		.abcjs-btn {
+			display: block;
+			width: 28px;
+			height: 28px;
+			background: none;
+			border: 0;
+			padding: 0;
+			font: 20px Phosphor !important;
+			line-height: 1;
+			cursor: pointer;
+
+			&.abcjs-midi-start {
+				&::before {
+					content: "\e3d0";
+				}
+
+				&.abcjs-loading {
+					&::before {
+						content: "\e66c";
+					}
+
+					animation: abcjs-spin 1s linear infinite;
+					cursor: default;
+				}
+
+				&.abcjs-pushed::before {
+					content: "\e39e";
+				}
+			}
+		}
+
+		.abcjs-midi-progress-background {
+			flex-grow: 1;
+			height: $track-height;
+			margin: 0 $thumb-width;
+			padding: 0;
+			border: 0;
+			cursor: pointer;
+		}
+
+		.abcjs-midi-progress-indicator {
+			display: block;
+			position: relative;
+			width: $thumb-width;
+			height: $thumb-height;
+			margin-left: calc($thumb-width / -0.5);
+			border-radius: calc(min($thumb-width, $thumb-height) / 2);
+			cursor: pointer;
+		}
+
+		@keyframes abcjs-spin {
+			from {
+				rotate: 0deg;
+			}
+
+			to {
+				rotate: 360deg;
+			}
+		}
+	}
+
+	@media print {
+		display: none;
+	}
+}
+
+@mixin abcjs-light {
+	.synth .abcjs-inline-audio {
+		.abcjs-btn {
+			color: #5b5859;
+		}
+		
+		.abcjs-midi-progress-background {
+			background: linear-gradient(180deg, transparent $track-bg-start, #737071 $track-bg-start, #737071 $track-bg-end, transparent $track-bg-end);
+		}
+		
+		.abcjs-midi-progress-indicator {
+			background: #f94449;
+		}
+	}
+}
+
+@mixin abcjs-dark {
+	.synth .abcjs-inline-audio {
+		.abcjs-btn {
+			color: white;
+		}
+		
+		.abcjs-midi-progress-background {
+			background: linear-gradient(180deg, transparent $track-bg-start, #f0f7fa $track-bg-start, #f0f7fa $track-bg-end, transparent $track-bg-end);
+		}
+		
+		.abcjs-midi-progress-indicator {
+			background: #1e90ff;
+		}
+	}
+}

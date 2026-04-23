@@ -1,0 +1,6 @@
+---
+layout: page
+---
+
+<p>Here are posts which belong to the {{ page.type }} <b>{{ page.title | strip_html }}</b>.</p>
+{% include list-post.html posts=page.posts %}

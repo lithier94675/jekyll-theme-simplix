@@ -1,0 +1,36 @@
+<style type="text/css">
+	ul {
+		list-style: none;
+		padding-left: 0;
+	}
+
+	ul li {
+		display: flex;
+		margin-bottom: 12px;
+	}
+
+	ul li i {
+		font-size: 1.6em;
+		margin-right: 4px;
+	}
+
+	ul li p {
+		margin: 4px 0 0;
+	}
+
+	ul li span {
+		color: #777;
+	}
+</style>
+
+<ul>
+	{% for post in include.posts %}
+		<li>
+			<i class="ph ph-file"></i>
+			<div>
+				<a href="{{ post.url | relative_url }}">{{ post.title }}</a><br>
+				<p><span>{{ post.date | date_to_string }} </span>{{ post.content | strip_html | truncate: 67 }}</p>
+			</div>
+		</li>
+	{% endfor %}
+</ul>

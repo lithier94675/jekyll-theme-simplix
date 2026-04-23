@@ -1,0 +1,36 @@
+---
+src:
+- npm/katex/dist/katex.min.js
+- npm/katex/dist/contrib/auto-render.min.js
+- npm/katex/dist/contrib/mhchem.min.js
+- npm/html-minifier-terser/dist/htmlminifier.umd.bundle.min.js
+- npm/dompurify/dist/purify.min.js
+- npm/marked/lib/marked.umd.min.js
+- npm/pako/dist/pako.min.js
+- npm/abcjs/dist/abcjs-basic-min.js
+---
+
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en-US' }}">
+
+<head>
+	{% include head.html %}
+	{% if jekyll.environment == 'development' or site.debug %}
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/eruda"></script>
+		<script type="text/javascript">!document.documentMode && eruda.init()</script>
+	{% endif %}
+</head>
+
+{% assign len = page.content | strip | size %}
+{% if len == 0 %}
+	{% assign class = class | default: '' | append: 'main__empty-content ' %}
+{% endif %}
+{% if page.title_bg_fill or site.title_bg_fill %}
+	{% assign class = class | default: '' | append: 'main__bg-fill ' %}
+{% endif %}
+<body{% if class %} class="{{ class | strip }}"{% endif %}>
+	{% include ui.html %}
+	{{ content }}
+</body>
+
+</html>

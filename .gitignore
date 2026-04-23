@@ -1,0 +1,16 @@
+*.gem
+_site/
+.jekyll-metadata
+.jekyll-cache/
+.sass-cache/
+.bundle/
+Gemfile.lock
+
+node_modules/
+package-lock.json
+
+.vs/
+.vscode/
+.idea/
+
+.DS_Store

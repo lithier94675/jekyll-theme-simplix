@@ -1,0 +1,8 @@
+bundle install
+
+TAG=$(ruby -e "puts Gem::Specification.load('$REPO.gemspec').version")
+rm -rf *.gem
+
+git fetch origin && git rev-parse v$TAG &>/dev/null && exit 1
+gem build $REPO.gemspec
+gem push $REPO-$TAG.gem && git tag v$TAG && git push origin --all && git push origin v$TAG

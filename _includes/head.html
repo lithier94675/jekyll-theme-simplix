@@ -1,0 +1,40 @@
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="IE_RM_OFF" content="true">
+
+<title>{{ page.title | default: site.title | default: 'Untitled' }}</title>
+<link rel="icon" href="{{ page.icon | default: site.favicon | default: '/favicon.ico' | relative_url }}">
+{% assign desc = page.description | default: site.description %}
+{% if page.path != '404.html' and desc %}<meta name="description" content="{{ desc }}">{% endif %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="stylesheet" type="text/css" href="{{ '/assets/style.css' | relative_url }}">
+{% if layout.title_bg_light or layout.title_bg_dark %}
+	{% if page.title_bg_fill or site.title_bg_fill %}
+		<style type="text/css" media="screen">
+			body#main__theme-light .main__bg {
+				background: {{ page.title_bg_light | default: page.title_bg | default: layout.title_bg_light | default: site.title_bg[page.layout][0] | default: 'white' }} center fixed !important;
+			}
+
+			body#main__theme-dark .main__bg {
+				background: {{ page.title_bg_dark | default: page.title_bg | default: layout.title_bg_dark | default: site.title_bg[page.layout][1] | default: site.title_bg[page.layout][0] | default: 'black' }} center fixed;
+			}
+		</style>
+		<div class="main__bg"></div>
+	{% else %}
+		<style type="text/css" media="screen">
+			body#main__theme-light header {
+				background: {{ page.title_bg_light | default: page.title_bg | default: layout.title_bg_light | default: site.title_bg[page.layout][0] | default: 'white' }} !important;
+			}
+
+			body#main__theme-dark header {
+				background: {{ page.title_bg_dark | default: page.title_bg | default: layout.title_bg_dark | default: site.title_bg[page.layout][1] | default: site.title_bg[page.layout][0] | default: 'black' }};
+			}
+		</style>
+	{% endif %}
+{% endif %}
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/combine/{% for src in layout.src %}{{ src }}{% unless forloop.last %},{% endunless %}{% endfor %}"></script>
+<script type="text/javascript" src="{{ '/assets/script.js' | relative_url }}" defer></script>

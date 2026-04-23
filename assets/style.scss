@@ -1,0 +1,19 @@
+---
+---
+
+@import "main";
+@import "theme";
+@import "rouge";
+@import "abcjs";
+
+body#main__theme-light {
+	@include theme-light;
+	@include rouge-light;
+	@include abcjs-light;
+}
+
+body#main__theme-dark {
+	@include theme-dark;
+	@include rouge-dark;
+	@include abcjs-dark;
+}

@@ -1,0 +1,18 @@
+baseurl: /jekyll-theme-simplix
+
+navigation:
+  - title: Posts
+    url: /posts
+    icon: article
+  - title: About
+    url: https://lithier94675.github.io
+  - title: My GitHub
+    url: https://github.com/lithier94675
+
+plugins:
+  - jekyll-archives
+
+jekyll-archives:
+  enabled:
+    - tags
+    - categories
