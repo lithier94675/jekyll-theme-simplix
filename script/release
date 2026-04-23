@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 bundle install
 
 TAG=$(ruby -e "puts Gem::Specification.load('$REPO.gemspec').version")
