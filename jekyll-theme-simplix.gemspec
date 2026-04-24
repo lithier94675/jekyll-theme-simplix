@@ -2,7 +2,7 @@
 
 Gem::Specification.new { |s|
 	s.name = "jekyll-theme-simplix"
-	s.version = "0.2.0"
+	s.version = "0.2.1"
 	s.summary = "A simple Jekyll theme made with gradient colors"
 	s.authors = ["lithier94675"]
 	s.homepage = "https://lithier94675.github.io/jekyll-theme-simplix"
@@ -14,7 +14,7 @@ Gem::Specification.new { |s|
 	}
 
 	s.files = `git ls-files -z`.split("\x0").select { |f|
-		f.match(%r!^((_includes|_layouts|_sass|assets)/|(LICENSE|README\.md|posts.html|404\.md))!i)
+		f.match(%r!^((_includes|_layouts|_sass|assets)/|(LICENSE|README))!i)
 	}
 
 

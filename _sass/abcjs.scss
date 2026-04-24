@@ -38,7 +38,7 @@ $track-bg-end: max(50%, min(50% * (1 + $track-bg-height / $track-height), 100%))
 						content: "\e66c";
 					}
 
-					animation: abcjs-spin 1s linear infinite;
+					animation: spin 1s linear infinite;
 					cursor: default;
 				}
 
@@ -62,12 +62,16 @@ $track-bg-end: max(50%, min(50% * (1 + $track-bg-height / $track-height), 100%))
 			position: relative;
 			width: $thumb-width;
 			height: $thumb-height;
-			margin-left: calc($thumb-width / -0.5);
+			margin-left: calc(min($thumb-width, $thumb-height) / -2);
 			border-radius: calc(min($thumb-width, $thumb-height) / 2);
 			cursor: pointer;
 		}
 
-		@keyframes abcjs-spin {
+		.abcjs-midi-clock {
+			font-family: monospace;
+		}
+
+		@keyframes spin {
 			from {
 				rotate: 0deg;
 			}

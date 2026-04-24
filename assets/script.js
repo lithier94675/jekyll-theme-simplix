@@ -10,7 +10,7 @@
 			e = e.parentElement;
 			if(!e || e.msMatchesSelector(s)) return e;
 		}
-	};
+	}, String.prototype.replaceAll = function(f, r) {return this.split(f).join(r)};
 
 	// Initialize page theme
 	let th = document.querySelector(".btn__theme-toggle"), th_dark = window.matchMedia("(prefers-color-scheme: dark)"), th_match = th_dark && th_dark.matches, th_val = sessionStorage.getItem("theme"), th_ev = function(v) {
@@ -90,13 +90,12 @@
 
 		const code_copy = document.createElement("button"), code_copy_reset = function() {
 			code_copy.className = "";
-			code_copy.innerText = "\ue1ca";
+			code_copy.innerHTML = '<i class="ph ph-copy"></i>';
 			code_copy.title = "Copy";
 		}, code_copy_ev = function(b) {
-			const c = b ? "code__copy-ok" : "code__copy-bad";
-			code_copy.classList.toggle(c);
+			code_copy.classList.toggle(b ? "code__copy-ok" : "code__copy-bad");
 			code_copy.classList.toggle("code__copy-na");
-			code_copy.innerText = b ? "\ue182" : "\ue4f6";
+			code_copy.innerHTML = '<i class="ph ph-' + (b ? "check" : "x") + '"></i>';
 			code_copy.title = b ? "Copied!" : "Error!";
 			setTimeout(code_copy_reset, 1500);
 		};
@@ -116,25 +115,22 @@
 				e.classList.add("code__preview-container");
 				pre.appendChild(e);
 				return e;
-			}, str64_encoder = new TextEncoder(), str64 = function(s) {return btoa(String.fromCharCode.apply(null, pako.deflate(str64_encoder.encode(s), {level: 9}))).replace(new RegExp("\\+", "g"), "-").replace(new RegExp("\\/", "g"), "_")}, min_opts = {
-				minifyCSS: true,
-				minifyJS: true,
-				removeComments: true,
-				collapseWhitespace: true,
-				conservativeCollapse: false,
-				preserveLineBreaks: false
-			};
+			}, str64 = function(s) {return btoa(String.fromCharCode.apply(null, pako.deflate(new TextEncoder().encode(s), {level: 9}))).replaceAll("+", "-").replaceAll("/", "_")};
 			switch(code_lang) {
 			case "html":
 				const f = document.createElement("iframe");
-				HTMLMinifier.minify(code, min_opts).then(function(t) {f.srcdoc = t});
+				f.srcdoc = code;
 				preview_init(f).onload = function() {this.contentDocument.querySelectorAll("a").forEach(function(a) {a.target = "_blank", a.rel = "noopener noreferrer"})};
 				break;
 
 			case "md":
 			case "markdown":
 				const d = document.createElement("div");
-				HTMLMinifier.minify(DOMPurify.sanitize(marked.parse(code)), min_opts).then(function(t) {d.innerHTML = t});
+				HTMLMinifier.minify(DOMPurify.sanitize(marked.parse(code)), {
+					removeComments: true,
+					collapseWhitespace: true,
+					conservativeCollapse: true
+				}).then(function(t) {d.innerHTML = t});
 				d.querySelectorAll("a").forEach(link);
 				preview_init(d);
 				break;
