@@ -15,9 +15,7 @@ jobs:
         with:
           ruby-version: '3.3'
           bundler-cache: true
-      - uses: rubygems/configure-rubygems-credentials@main
-        with:
-          api-token: ${{ secrets.RUBYGEMS_API_KEY }}
       - run: bash script/release
         env:
           REPO: ${{ github.event.repository.name }}
+          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
