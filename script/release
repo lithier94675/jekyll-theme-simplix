@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+git config user.name "github-actions[bot]"
+git config user.email "github-actions[bot]@users.noreply.github.com"
+
 bundle install
 
 TAG=$(ruby -e "puts Gem::Specification.load('$REPO.gemspec').version")
