@@ -111,9 +111,6 @@ To check out all supported features of this project, please take a look at [the 
 > debug: true
 > ```
 
-> [!WARNING]
-> This theme is not intended to be an customizable template for beginners.
-
 ## Credits
 
 - Fonts: [Google Fonts](https://fonts.google.com) and their corresponding creators

@@ -2,7 +2,7 @@
 
 Gem::Specification.new { |s|
 	s.name = "jekyll-theme-simplix"
-	s.version = "0.2.1"
+	s.version = "0.3.0"
 	s.summary = "A simple Jekyll theme made with gradient colors"
 	s.authors = ["lithier94675"]
 	s.homepage = "https://lithier94675.github.io/jekyll-theme-simplix"

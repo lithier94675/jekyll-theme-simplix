@@ -129,7 +129,8 @@
 				HTMLMinifier.minify(DOMPurify.sanitize(marked.parse(code)), {
 					removeComments: true,
 					collapseWhitespace: true,
-					conservativeCollapse: true
+					conservativeCollapse: true,
+					preserveLineBreaks: false
 				}).then(function(t) {d.innerHTML = t});
 				d.querySelectorAll("a").forEach(link);
 				preview_init(d);
