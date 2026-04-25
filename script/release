@@ -3,18 +3,9 @@
 git config user.name "github-actions[bot]"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-mkdir -p $HOME/.gem
-echo <<EOF > $HOME/.gem/credentials
----
-:rubygems_api_key: $RUBYGEMS_API_KEY
-EOF
-chmod 0600 $HOME/.gem/credentials
-
+TAG=$(ruby -e "puts Gem::Specification.load('$REPO.gemspec').version")
 bundle install
 
-TAG=$(ruby -e "puts Gem::Specification.load('$REPO.gemspec').version")
-rm -rf *.gem
-
-git fetch origin
+git fetch origin main
 gem build $REPO.gemspec
-gem push $REPO-$TAG.gem && git tag $TAG && git push origin main && git push origin $TAG
+gem push $REPO-$TAG.gem

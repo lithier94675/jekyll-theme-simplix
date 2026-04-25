@@ -20,4 +20,4 @@ jobs:
       - run: bash script/release
         env:
           REPO: ${{ github.event.repository.name }}
-          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
