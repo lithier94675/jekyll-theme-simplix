@@ -3,7 +3,7 @@
 bundle install
 bundle exec jekyll build --incremental
 
-npm install -g html-minifier-next clean-css-cli terser
-find _site -name "*.html" -exec html-minifier-next {} -o {} -f html --collapse-whitespace --remove-comments --minify-css --minify-js \;
-cleancss _site/assets/style.css -o _site/assets/style.css
-terser _site/assets/script.js -o _site/assets/script.js -c -m
+npm install -g html-minifier clean-css-cli terser
+find _site -name "*.html" -exec html-minifier {} -o {} --collapse-whitespace --remove-comments --minify-css --minify-js \;
+find _site -name "*.css" -exec cleancss {} -o {} \;
+find _site -name "*.js" -exec terser {} -o {} -c -m \;
