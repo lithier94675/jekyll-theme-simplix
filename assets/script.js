@@ -23,14 +23,18 @@
 	document.body.id = "main__theme-" + (th_val == "dark" || th_val == "light" ? th_val : th_match ? "dark" : "light");
 
 	// Initialize navigation menu
-	const nav = document.querySelector("nav"), nav_btn = nav.querySelector("button"), nav_links = nav.querySelector(".nav__links"), nav_ev = function() {if(nav.classList.contains("nav__multi")) nav_btn.innerHTML = nav.classList.toggle("nav__open") ? "\ue4f6 Close" : "\ue2f0 Menu"};
-	nav.style.display = "flex";
-	nav_btn.onclick = function() {
-		nav_ev();
-		navigator.userAgentData.mobile && history.pushState(null, null, window.location.pathname);
+	const nav = document.querySelector("nav"), nav_btn = nav.querySelector("button"), nav_links = nav.querySelector(".nav__links"), nav_ev = function(i) {
+		if(nav.classList.contains("nav__multi")) {
+			i ? nav.classList.add("nav__open") : nav.classList.remove("nav__open");
+			nav_btn.innerHTML = i ? '<i class="ph ph-x"></i> Close' : '<i class="ph ph-list"></i> Menu';
+			return i;
+		} else return false;
 	};
+	nav.style.display = "flex";
+	nav_btn.onclick = function() {nav_ev(nav.classList.toggle("nav__open")) ? history.pushState(null, null, window.location.pathname) : history.back()};
+	window.onpopstate = function() {nav_ev(false)};
 	nav_links.onclick = function(e) {e.target.tagName != "a" && nav_ev()};
-	navigator.userAgentData && navigator.userAgentData.mobile ? window.onpopstate = nav_ev : nav_links.addEventListener("wheel", function(e) {
+	nav_links.addEventListener("wheel", function(e) {
 		if(window.innerWidth >= 768) {
 			e.preventDefault();
 			nav_links.scrollLeft += e.deltaY;
