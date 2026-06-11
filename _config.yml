@@ -16,3 +16,6 @@ jekyll-archives:
   enabled:
     - tags
     - categories
+
+sass:
+  style: compressed
