@@ -20,5 +20,5 @@ jobs:
           JEKYLL_ENV: production
       - uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.PERSONAL_TOKEN }}
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: _site
