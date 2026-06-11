@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+bundle install
+bundle exec jekyll build --incremental
+
+npm install -g html-minifier-terser terser
+find _site -name "*.html" -exec html-minifier-terser {} -o {} --collapse-whitespace --remove-comments --minify-css --minify-js \;
+find _site -name "*.js" -exec terser {} -o {} -c -m \;
