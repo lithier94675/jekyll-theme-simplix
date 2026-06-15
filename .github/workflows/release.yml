@@ -15,7 +15,13 @@ jobs:
         with:
           ruby-version: '3.3'
           bundler-cache: true
-      - run: bash script/release
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          bundle install
+          gem build $REPO.gemspec
+          gem push $REPO-$(ruby -e "puts Gem::Specification.load('$REPO.gemspec').version").gem
         env:
           REPO: ${{ github.event.repository.name }}
           GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}

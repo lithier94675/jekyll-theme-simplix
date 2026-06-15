@@ -15,7 +15,12 @@ jobs:
         with:
           ruby-version: '3.4'
           bundler-cache: true
-      - run: bash script/build
+      - run: |
+          bundle install
+          bundle exec jekyll build --incremental --baseurl ${{ github.event.repository.name }}
+          npm install -g html-minifier-terser terser
+          find _site -name "*.html" -exec html-minifier-terser {} -o {} --collapse-whitespace --remove-comments --minify-css --minify-js \;
+          find _site -name "*.js" -exec terser {} -o {} -c -m \;
         env:
           JEKYLL_ENV: production
       - uses: peaceiris/actions-gh-pages@v4
