@@ -2,5 +2,48 @@
 layout: page
 ---
 
-<p>Here are posts which belong to the {{ page.type }} <b>{{ page.title | strip_html }}</b>.</p>
+{% if page.type == 'tag' or page.type == 'category' %}
+	{% assign name = page.title | strip_html %}
+{% elsif page.type == 'year' %}
+	{% assign name = page.date | date: '%Y' %}
+	{% assign child = 'month' %}
+{% elsif page.type == 'month' %}
+	{% assign name = page.date | date: '%b %Y' %}
+	{% assign child = 'day' %}
+{% elsif page.type == 'day' %}
+	{% assign name = page.date | date: '%d %b %Y' %}
+{% endif %}
+
+{% if child %}
+	{% assign arr = '' | split: ',' %}
+	{% assign months = ',Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec' | split: ',' %}
+	<p>Specific {{ child }}s which have existing posts: {% case page.type %}
+		{% when 'year' %}
+			{% assign year = page.date | date: '%Y' %}
+			{% for post in site.posts %}
+				{% assign src = post.date | date: '%Y' %}
+				{% if src == year %}
+					{% assign idx = post.date | date: '%m' %}
+					{% unless arr contains idx %}
+						{% assign arr = arr | push: idx %}
+						<a href="{{ idx }}">{% assign idx = idx | to_integer %}{{ months[idx] }}</a>
+					{% endunless %}
+				{% endif %}
+			{% endfor %}
+		{% when 'month' %}
+			{% assign month = page.date | date: '%Y%m' %}
+			{% for post in site.posts %}
+				{% assign src = post.date | date: '%Y%m' %}
+				{% if src == month %}
+					{% assign idx = post.date | date: '%d'  %}
+					{% unless arr contains idx %}
+						{% assign arr = arr | push: idx %}
+						<a href="{{ idx }}">{{ idx }}</a>
+					{% endunless %}
+				{% endif %}
+			{% endfor %}
+	{% endcase %}</p>
+{% endif %}
+
+<p>Here are posts which belong to the {{ page.type }} <b>{{ name }}</b>.</p>
 {% include list-post.html posts=page.posts %}

@@ -41,7 +41,7 @@
 		}
 	});
 
-	// Initialize \"Scroll to top\" button
+	// Initialize "Scroll to top" button
 	function scroll_ev() {
 		const e = document.querySelector("header"), r = e.getBoundingClientRect(), h = window.innerHeight;
 		if(document.body.clientHeight > h && (r.bottom <= h * .2) != document.body.classList.contains("main__scroll-down")) document.body.classList.toggle("main__scroll-down");
