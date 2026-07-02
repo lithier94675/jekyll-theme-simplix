@@ -17,7 +17,6 @@ Gem::Specification.new { |s|
 		f.match(%r!^((_includes|_layouts|_sass|assets)/|(LICENSE|README))!i)
 	}
 
-
 	s.required_ruby_version = ">= 2.7.0"
 	s.add_runtime_dependency "jekyll", "~> 4.4"
 	s.add_runtime_dependency "webrick", "~> 1.9"
