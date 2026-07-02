@@ -1,6 +1,6 @@
 on:
   release:
-    types: [released]
+    types: [published]
 
 jobs:
   release:
@@ -21,8 +21,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           bundle install
-          gem build $REPO.gemspec
-          gem push $REPO-$(ruby -e "puts Gem::Specification.load('$REPO.gemspec').version").gem
+          gem push $(gem build ${{ github.event.repository.name }}.gemspec | awk '/File:/ {print $2}')
         env:
-          REPO: ${{ github.event.repository.name }}
           GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
