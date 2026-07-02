@@ -12,12 +12,13 @@ permalink: /posts
 	<p>There aren't any posts on this website.</p>
 {% endif %}
 
-{% if site.tags.size > 0 and site['jekyll-archives'].enabled == 'all' or site['jekyll-archives'].enabled contains 'tags' %}
-	<h3>Tags</h3>
-	{% include list-group.html dir='tag' group=site.tags icon='tag-simple' %}
-{% endif %}
-
-{% if site.categories.size > 0 and site['jekyll-archives'].enabled == 'all' or site['jekyll-archives'].enabled contains 'categories' %}
-	<h3>Categories</h3>
-	{% include list-group.html dir='category' group=site.categories icon='folder-simple' %}
+{% if site.plugins contains 'jekyll-archives' %}
+	{% if site.tags.size > 0 and site['jekyll-archives'].enabled == 'all' or site['jekyll-archives'].enabled contains 'tags' %}
+		<h3>Tags</h3>
+		{% include list-group.html dir='tag' group=site.tags icon='tag-simple' %}
+	{% endif %}
+	{% if site.categories.size > 0 and site['jekyll-archives'].enabled == 'all' or site['jekyll-archives'].enabled contains 'categories' %}
+		<h3>Categories</h3>
+		{% include list-group.html dir='category' group=site.categories icon='folder-simple' %}
+	{% endif %}
 {% endif %}

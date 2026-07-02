@@ -11,9 +11,7 @@ plugins:
   - jekyll-archives
 
 jekyll-archives:
-  enabled:
-    - tags
-    - categories
+  enabled: all
 
 sass:
   style: compressed

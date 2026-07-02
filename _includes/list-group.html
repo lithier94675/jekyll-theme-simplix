@@ -1,8 +1,17 @@
 <ul>
 	{% for group in include.group %}
+		{% case include.dir %}
+			{% when 'tag' %}
+				{% assign link = '/tag/:name/' %}
+			{% when 'category' %}
+				{% assign link = '/category/:name/' %}
+			{% else %}
+				{% break %}
+		{% endcase %}
+		{% assign name = group[0] | slugify: 'ascii' %}
 		<li>
 			<i class="ph ph-{{ include.icon | default: 'book' }}"></i>
-			<a href="{{ include.dir | prepend: '/' | append: '/' | relative_url }}{{ group[0] | slugify: 'ascii' }}">{{ group[0] }}</a>&nbsp;<span>{{ group[1].size }} post{% if group[1].size > 1 %}s{% endif %}</span></p>
+			<a href="{{ site['jekyll-archives'].permalinks[include.dir] | default: link | replace: ':name', name | relative_url }}">{{ group[0] }}</a>&nbsp;<span>{{ group[1].size }} post{% if group[1].size > 1 %}s{% endif %}</span></p>
 		</li>
 	{% endfor %}
 </ul>

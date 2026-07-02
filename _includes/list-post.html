@@ -29,7 +29,7 @@
 			<i class="ph ph-file"></i>
 			<div>
 				<a href="{{ post.url | relative_url }}">{{ post.title }}</a><br>
-				<p><span>{{ post.date | date_to_string }} </span>{{ post.content | strip_html | truncate: 67 }}</p>
+				<p><span>{{ post.date | date_to_string }}</span> {{ post.content | strip_html | truncate: 67 }}</p>
 			</div>
 		</li>
 	{% endfor %}

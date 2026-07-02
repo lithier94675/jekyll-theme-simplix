@@ -68,7 +68,7 @@ $track-bg-end: max(50%, min(50% * (1 + $track-bg-height / $track-height), 100%))
 		}
 
 		.abcjs-midi-clock {
-			font-family: monospace;
+			font-family: "Source Code Pro", "Roboto Mono", Consolas, "Courier New", Courier, monospace;
 		}
 
 		@keyframes spin {
