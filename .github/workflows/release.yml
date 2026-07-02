@@ -14,4 +14,4 @@ jobs:
         with:
           ruby-version: '3.3'
           bundler-cache: true
-      - uses: rubygems/release-gem@v1
+      - uses: voxpupuli/ruby-release@v0.4.1
