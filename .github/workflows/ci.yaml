@@ -17,7 +17,6 @@ jobs:
           bundler-cache: true
       - run: |
           bundle install
-          bundle add jekyll-archives
           bundle exec jekyll build --incremental --baseurl ${{ github.event.repository.name }}
           npm install -g html-minifier-terser terser
           find _site -name "*.html" -exec html-minifier-terser {} -o {} --collapse-whitespace --remove-comments --minify-css --minify-js \;
